@@ -1,0 +1,9 @@
+## if you want to call the database_trial.py file from the commad-line ##
+## 
+## enter 'sudo chmod +x -path to file ##
+## this will make it executable ##
+
+## with the database_trial_meta file ##
+##
+## you will need to open a python interpreter and create the tables ##
+## one for the words and one for the definitions ##
