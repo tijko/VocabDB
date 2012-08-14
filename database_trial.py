@@ -18,7 +18,7 @@ def dictionary(word):
     def_count = 1
     for i in fin: 
         query[fin.index(i)] = i
-    con = sqlite3.connect('vocab.db')
+    con = sqlite3.connect('/home/oberon/vocab_database/vocab.db')
     with con:
         spot = con.cursor()
         spot.execute("SELECT * FROM Words")
