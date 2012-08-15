@@ -1,8 +1,0 @@
-## this needs to be run first separately ##
-import sqlite3
-
-con = sqlite3.connect('vocab.db')
-with con:
-    spot = con.cursor()
-    spot.execute("CREATE TABLE Words(vocab_id INTEGER PRIMARY KEY, vocab TEXT)")
-    spot.execute("CREATE TABLE Definitions(def_id INTEGER, def TEXT, def_word INTEGER, FOREIGN KEY(def_word) REFERENCES Words(vocab_id))")
