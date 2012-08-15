@@ -21,8 +21,16 @@ class Vocab:
         fin = [i.text for i in trans]
         for i in fin: 
             self.query[fin.index(i)] = i
+        self.create_database()
         self.word_database()
         return self.query
+    
+    def create_database(self):
+        con = sqlite3.connect('/home/oberon/vocab_database/vocab.db')
+        with con:
+            cur = con.cursor()
+            cur.execute("CREATE TABLE IF NOT EXISTS Words(vocab_id INTEGER PRIMARY KEY, vocab TEXT)")
+            cur.execute("CREATE TABLE IF NOT EXISTS Definitions(def_id INTEGER, def  TEXT, def_word INTEGER, FOREIGN KEY(def_word) REFERENCES Words(vocab_id))")
 
     def word_database(self):
         con = sqlite3.connect('/home/oberon/vocab_database/vocab.db')
@@ -40,7 +48,4 @@ class Vocab:
                 spot.execute("INSERT INTO Definitions VALUES(?,?,?)", (self.def_count,self.query[q],len(rows)))
                 self.def_count += 1
         
-print Vocab().dictionary(sys.argv[1])  
-
-
-
+print Vocab().dictionary(sys.argv[1])
