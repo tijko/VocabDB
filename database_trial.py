@@ -11,7 +11,6 @@ class Vocab:
         self.def_count = 1
         self.query = {}
         
-
     def dictionary(self,word):
         br = mechanize.Browser()
         response = br.open('http://www.dictionary.reference.com')
