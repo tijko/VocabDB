@@ -4,7 +4,6 @@ from BeautifulSoup import BeautifulSoup
 import sys
 import sqlite3
 
-
 class Vocab:
     def __init__(self):
         self.word = sys.argv[1] 
@@ -41,7 +40,6 @@ class Vocab:
                 spot.execute("INSERT INTO Definitions VALUES(?,?,?)", (self.def_count,self.query[q],len(rows)))
                 self.def_count += 1
         
-
 print Vocab().dictionary(sys.argv[1])  
 
 
