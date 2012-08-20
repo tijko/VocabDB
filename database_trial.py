@@ -9,12 +9,12 @@ class Vocab:
         self.word = sys.argv[1] 
         self.def_count = 1
         self.query = {}
-        
+
     def dictionary(self,word):
         br = mechanize.Browser()
         response = br.open('http://www.dictionary.reference.com')
         br.select_form(nr=0)
-        br.form['q'] = word 
+        br.form['q'] = word
         br.submit()
         definition = BeautifulSoup(br.response().read())
         trans = definition.findAll('td',{'class':'td3n2'})
@@ -47,5 +47,12 @@ class Vocab:
             for q in self.query:
                 spot.execute("INSERT INTO Definitions VALUES(?,?,?)", (self.def_count,self.query[q],len(rows)))
                 self.def_count += 1
-        
+            spot.execute("SELECT name FROM sqlite_master WHERE type='table'")
+            total = spot.fetchall()
+            print "You have %d tables " % len(total)
+            spot.execute("SELECT * FROM %s" % (total[0][0],))
+            ent = spot.fetchall()
+            print "You have %d entries" % len(ent)
+
+
 print Vocab().dictionary(sys.argv[1])
