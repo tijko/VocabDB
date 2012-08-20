@@ -10,7 +10,7 @@ class Vocab:
         self.def_count = 1
         self.query = {}
 
-    def dictionary(self,word):
+    def __call__(self,word):
         br = mechanize.Browser()
         response = br.open('http://www.dictionary.reference.com')
         br.select_form(nr=0)
@@ -55,4 +55,4 @@ class Vocab:
             print "You have %d entries" % len(ent)
 
 
-print Vocab().dictionary(sys.argv[1])
+print Vocab().__call__(sys.argv[1])
