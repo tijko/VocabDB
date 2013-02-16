@@ -26,14 +26,14 @@ class Vocab:
         return self.query
     
     def create_database(self):
-        con = sqlite3.connect('/home/oberon/vocab_database/vocab.db')
+        con = sqlite3.connect('/home/haumea/.vocab.db')
         with con:
             cur = con.cursor()
             cur.execute("CREATE TABLE IF NOT EXISTS Words(vocab_id INTEGER PRIMARY KEY, vocab TEXT)")
             cur.execute("CREATE TABLE IF NOT EXISTS Definitions(def_id INTEGER, def  TEXT, def_word INTEGER, FOREIGN KEY(def_word) REFERENCES Words(vocab_id))")
 
     def word_database(self):
-        con = sqlite3.connect('/home/oberon/vocab_database/vocab.db')
+        con = sqlite3.connect('/home/haumea/.vocab.db')
         with con:
             spot = con.cursor()
             spot.execute("SELECT * FROM Words")
@@ -55,4 +55,7 @@ class Vocab:
             print "You have %d entries" % len(ent)
 
 
-print Vocab().__call__(sys.argv[1])
+if __name__ == '__main__':
+    vcab = Vocab()
+    wrd = sys.argv[1]
+    print vcab.__call__(wrd)
