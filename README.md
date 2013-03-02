@@ -11,7 +11,6 @@ There a couple of extra modules used that aren't part of the python standard lib
 You can grab a copy of mechanize from https://pypi.python.org/pypi/mechanize/ and 
 BeautifulSoup from http://www.crummy.com/software/BeautifulSoup/.
 
-For the database files you will need to edit the paths to your user's home directory on your system or you
-will get an error about 'No such file or directory'(unless haumea is your systems name).
-
+For the database files, they will be saved as a '.' file to your user's home directory on your system.  
+If you 'dump' that database it will be saved as a 'txt' file in your user's home directory on your system.
 
