@@ -1,12 +1,14 @@
 import sqlite3
 import collections
 
+from os import environ
+
 
 class WordLog(object):
     
     @staticmethod
     def create_database():
-        con = sqlite3.connect('/home/haumea/.vocab.db')
+        con = sqlite3.connect(environ['HOME'] + '/.vocab.db')
         with con:
             cur = con.cursor()
             cur.execute("""CREATE TABLE IF NOT EXISTS Words(vocab_id INTEGER PRIMARY KEY, vocab TEXT)""")
@@ -22,7 +24,7 @@ class WordLog(object):
         def_cnt = 1
         self.word = word
         self.definitions = definitions
-        con = sqlite3.connect('/home/haumea/.vocab.db')
+        con = sqlite3.connect(environ['HOME'] + '/.vocab.db')
         with con:
             cur = con.cursor()
             cur.execute("SELECT * FROM Words")
@@ -44,7 +46,7 @@ class WordLog(object):
 
     def word_retrieval(self, word):
         self.word = word
-        con = sqlite3.connect('/home/haumea/.vocab.db')
+        con = sqlite3.connect(environ['HOME'] + '/.vocab.db')
         with con:
             cur = con.cursor()
             cur.execute('SELECT * FROM Words WHERE vocab=?', [self.word])
@@ -65,7 +67,7 @@ class WordLog(object):
             return 1
     
     def all_word_dump(self):
-        con = sqlite3.connect('/home/haumea/.vocab.db')
+        con = sqlite3.connect(environ['HOME'] + '/.vocab.db')
         with con:
             cur = con.cursor()
             cur.execute('SELECT * FROM Words')
@@ -76,7 +78,7 @@ class WordLog(object):
         wrd_def = collections.defaultdict(list)
         for entry in all_defs:      
             wrd_def[str(entry[2])].append(entry[1])
-        with open('/home/haumea/vocab.txt', 'a+') as f:
+        with open(environ['HOME'] + '/vocab.txt', 'a+') as f:
             for k in wrd_def:
                 f.write('\n'+all_wrds[k].capitalize()+'\n')
                 for d in wrd_def[k]:
