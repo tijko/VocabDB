@@ -74,8 +74,6 @@ class WordLog(object):
             cur.execute('SELECT * FROM Definitions')
             all_defs = cur.fetchall()
         wrd_def = collections.defaultdict(list)
-        for n in xrange(len(all_wrds)):        
-            wrd_def[str(n)]
         for entry in all_defs:      
             wrd_def[str(entry[2])].append(entry[1])
         with open('/home/haumea/vocab.txt', 'a+') as f:
