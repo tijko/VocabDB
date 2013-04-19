@@ -4,7 +4,7 @@ from storage import WordLog
 from BeautifulSoup import BeautifulSoup
 
 
-def Reference(word):
+def reference(word):
     br = mechanize.Browser()
     response = br.open('http://www.dictionary.reference.com')
     br.select_form(nr=0)
