@@ -3,7 +3,7 @@
 import sqlite3
 import argparse
 
-from lib.query import Reference
+from lib.query import reference
 from lib.storage import WordLog 
 
 ##      find word of the day?
@@ -28,7 +28,7 @@ class Vocab(object):
         if options.lookup:
             while not word_to_lookup.isalpha():
                 word_to_lookup = raw_input('Enter a word to lookup: ')
-            definitions = Reference(word_to_lookup)
+            definitions = reference(word_to_lookup)
             if not definitions:
                 return
             store = raw_input('\nEnter "y" if you would like to store "%s"?: ' % 
@@ -45,7 +45,7 @@ class Vocab(object):
                 print '\n"%s" has not been looked up before' % word_to_lookup
                 ans = raw_input('\nEnter "y" if you would like to now?: ')
                 if ans.lower() == 'y':
-                    definitions = Reference(word_to_lookup)
+                    definitions = reference(word_to_lookup)
                     if not definitions:
                         return
                     wrdlg.create_database() 
