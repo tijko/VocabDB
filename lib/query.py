@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import mechanize
 
 from storage import WordLog
@@ -12,9 +15,8 @@ def reference(word):
     br.submit()
     definition = BeautifulSoup(br.response().read())
     trans = definition.findAll('td', {'class':'td3n2'})
-    if len(trans) < 1:
-        print '\nNo Definitions! Check your spelling...\n'
-        return
+    if not trans:
+        return '\nNo Definitions! Check your spelling...\n'
     else:
         definitions = {trans.index(i):i.text for i in trans}
         print '\n%s:' % word.capitalize() 
