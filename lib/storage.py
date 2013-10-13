@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import sqlite3
 import collections
 
@@ -17,8 +20,6 @@ class WordLog(object):
                                                      def  TEXT, 
                                                      def_word INTEGER, 
                                                      FOREIGN KEY(def_word) REFERENCES Words(vocab_id))""")
-        con.commit()
-        con.close()
 
     def word_entry(self, word, definitions):
         def_cnt = 1
